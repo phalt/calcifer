@@ -78,9 +78,11 @@ The pins should be connected the same as [the diagrams on this tutorial](https:/
 
 ### Data out pin
 
-Configure which data out pin to use by editing the `DATA_OUT_PIN` constant in `~/.config/calciferpi`:
+Configure which data out pin to use by editing the `DATA_PIN` constant in `~/.config/calciferpi`:
 
 ```yaml
 ---
-DATA_OUT_PIN: 17
+DATA_PIN: 18
 ```
+
+The default is `GPIO4`: [https://pinout.xyz/pinout/pin7_gpio4/](https://pinout.xyz/pinout/pin7_gpio4/)
