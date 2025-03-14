@@ -11,6 +11,7 @@ dependencies = [
     "rich (>=13.9.4,<14.0.0)",
     "pydantic (>=2.10.6,<3.0.0)",
     "pyyaml (>=6.0.2,<7.0.0)",
+    "adafruit-circuitpython-dht (>=4.0.7,<5.0.0)",
 ]
 
 [tool.poetry]
