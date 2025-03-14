@@ -1,0 +1,50 @@
+[project]
+name = "calciferpi"
+version = "0.1.0"
+description = "The simplest Raspberry Pi temperature sensor"
+authors = [{ name = "Paul Hallett", email = "paulandrewhallett@gmail.com" }]
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "httpx (>=0.28.1,<0.29.0)",
+    "click (>=8.1.8,<9.0.0)",
+    "rich (>=13.9.4,<14.0.0)",
+    "pydantic (>=2.10.6,<3.0.0)",
+    "pyyaml (>=6.0.2,<7.0.0)",
+]
+
+[tool.poetry]
+packages = [{ include = "calciferpi" }]
+
+[tool.poetry.scripts]
+calciferpi = "calciferpi.cli:cli_group"
+
+[tool.poetry.urls]
+changelog = "https://phalt.github.io/calcifer/CHANGELOG/"
+documentation = "https://phalt.github.io/calcifer/"
+issues = "https://github.com/phalt/calcifer/issues"
+homepage = "https://phalt.github.io/calcifer/"
+
+
+[tool.poetry.group.dev.dependencies]
+black = "^25.1.0"
+ruff = "^0.10.0"
+mypy = "^1.15.0"
+pytest = "^8.3.5"
+ipython = "^9.0.2"
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+lint.select = [
+    # Pyflakes
+    "F",
+    # Pycodestyle
+    "E",
+    "W",
+    # isort
+    "I001",
+]

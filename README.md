@@ -1,9 +1,10 @@
 # CalciferPi 🔥🍓
-**The simplest Raspberry Pi temperature sensor**
+
+## The simplest Raspberry Pi temperature sensor
 
 Calcifer uses a [Raspberry Pi Zero 2 W](https://thepihut.com/products/raspberry-pi-zero-wh-with-pre-soldered-header) and a [DHT22](https://thepihut.com/products/dht22-temperature-humidity-sensor) sensor to provide a temperature sensor node and host network in your home.
 
-## Simple
+## Install
 
 CalciferPi is an installable:
 
@@ -15,12 +16,11 @@ pipx install calciferpi
 
 CalciferPi can be ran as a single node, providing a simple GUI and HTTP API for querying the sensor:
 
-```
+```sh
 calciferpi run node
 ```
 
 On your local network you can then visit `http://raspberrypi.local/calcifer` to see the GUI.
-
 
 ## Host
 
@@ -49,7 +49,6 @@ Then visit `http://raspberrypi.local/calcifer`.
 
 See configuration below for how to connect to other CalciferPi nodes.
 
-
 ## Configuration
 
 ### Background service
@@ -70,7 +69,6 @@ nodes:
 ```
 
 CalciferPi will automatically query the nodes listed and display them.
-
 
 ## Installing DHT22 sensor
 
