@@ -41,7 +41,7 @@ def read():
 
 
 @click.command()
-def run():
+def serve():
     """
     Run the micro web server
     """
@@ -52,7 +52,7 @@ def run():
 
 cli_group.add_command(version)
 cli_group.add_command(read)
-cli_group.add_command(run)
+cli_group.add_command(serve)
 
 if __name__ == "__main__":
     cli_group()
