@@ -13,12 +13,11 @@ dependencies = [
     "pyyaml (>=6.0.2,<7.0.0)",
     "adafruit-circuitpython-dht (>=4.0.7,<5.0.0)",
 ]
+[project.scripts]
+calciferpi = "calciferpi.cli:cli_group"
 
 [tool.poetry]
 packages = [{ include = "calciferpi" }]
-
-[tool.poetry.scripts]
-calciferpi = "calciferpi.cli:cli_group"
 
 [tool.poetry.urls]
 changelog = "https://phalt.github.io/calcifer/CHANGELOG/"
