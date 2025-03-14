@@ -23,28 +23,36 @@ def version():
 
 
 @click.command()
-@click.option(
-    "-i",
-    "--input",
-    help="Example input command",
-    required=True,
-)
-def example(
-    input,
-):
+def read():
     """
-    Generate a "basic" file structure, no code.
+    Read the temperature and humidity from the DHT22 sensor
     """
     from rich.console import (
         Console,
     )
 
+    from calciferpi import readings
+
     console = Console()
-    console.log(f"{input}")
+    temp = readings.get_temperature()
+    console.print(f"🌡️ Temperature: {temp}°C")
+    hum = readings.get_humidity()
+    console.print(f"💦 Humidity: {hum}%")
+
+
+@click.command()
+def run():
+    """
+    Run the micro web server
+    """
+    from calciferpi.server.app import app
+
+    app.run()
 
 
 cli_group.add_command(version)
-cli_group.add_command(example)
+cli_group.add_command(read)
+cli_group.add_command(run)
 
 if __name__ == "__main__":
     cli_group()
