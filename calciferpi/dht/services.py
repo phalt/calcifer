@@ -10,7 +10,7 @@ def _determine_pin_from_int(pin: int) -> Pin:
     return {
         4: raspberry_pi_gpio.D4,
         17: raspberry_pi_gpio.D17,
-    }
+    }[pin]
 
 
 def get_dht22_device() -> adafruit_dht.DHT22:

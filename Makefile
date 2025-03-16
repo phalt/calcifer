@@ -4,8 +4,15 @@ help:
 	@grep -E '^[ .a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
 	@echo
 
-install:  ## Install requirements ready for development
+install-dev:  ## Install requirements ready for local dev
 	poetry install
+
+install-pi:  ## Install from scratch on a Raspberry Pi device
+    sudo apt update -y
+	sudo apt upgrade -y
+	python3 -m venv .venv
+	source .venv/bin/activate
+	python3 -m pip install .
 
 deploy-docs:  ## Build and deploy the documentation
 	mkdocs build
