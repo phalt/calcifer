@@ -41,9 +41,9 @@ def read():
 
 
 @click.command()
-def serve():
+def host():
     """
-    Run the micro web server
+    Run the micro web server in host mode
     """
     from calciferpi.server.app import app
 
@@ -52,7 +52,7 @@ def serve():
 
 cli_group.add_command(version)
 cli_group.add_command(read)
-cli_group.add_command(serve)
+cli_group.add_command(host)
 
 if __name__ == "__main__":
     cli_group()

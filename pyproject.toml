@@ -14,6 +14,7 @@ dependencies = [
     "adafruit-circuitpython-dht (>=4.0.7,<5.0.0)",
     "flask (>=3.1.0,<4.0.0)",
     "pydantic-settings (>=2.8.1,<3.0.0)",
+    "setuptools (>=76.0.0,<77.0.0)",
 ]
 [project.scripts]
 calciferpi = "calciferpi.cli:cli_group"

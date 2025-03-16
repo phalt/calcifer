@@ -1,7 +1,9 @@
 import os
 
 from flask import Flask, render_template
+from pydantic import BaseModel
 
+from calciferpi.readings import get_humidity, get_temperature
 from calciferpi.settings import settings
 
 # Determine the directory where the current script is located.
@@ -12,9 +14,16 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, "templates/")
 app = Flask(__name__, static_folder=STATIC_DIR, template_folder=TEMPLATE_DIR)
 
 
+class Reading(BaseModel):
+    name: str
+    temperature: float
+    humidity: float
+
+
 @app.route("/")
 def index():
-    return render_template("index.html")
+    readings = Reading(name="Paul's room", temperature=get_temperature(), humidity=get_humidity())
+    return render_template("index.html", context={"readings": [readings.model_dump()]})
 
 
 def run():
