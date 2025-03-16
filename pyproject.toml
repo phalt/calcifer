@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "The simplest Raspberry Pi temperature sensor"
 authors = [{ name = "Paul Hallett", email = "paulandrewhallett@gmail.com" }]
 readme = "README.md"
-requires-python = ">=3.12"
+requires-python = ">=3.11"
 dependencies = [
     "httpx (>=0.28.1,<0.29.0)",
     "click (>=8.1.8,<9.0.0)",
