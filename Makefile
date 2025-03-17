@@ -7,9 +7,8 @@ help:
 install-dev:  ## Install requirements ready for local dev
 	poetry install
 
-install-pi:  ## Install from scratch on a Raspberry Pi device
-    sudo apt update -y
-	sudo apt upgrade -y
+install-pi:  ## Install from scratch on a Raspberry Pi device 
+	sudo apt update && sudo apt upgrade
 	python3 -m venv .venv
 	source .venv/bin/activate
 	python3 -m pip install .
