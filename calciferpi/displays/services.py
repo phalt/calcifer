@@ -4,7 +4,7 @@ from rich.columns import Columns
 from rich.panel import Panel
 
 
-def generate_standard_cli_layout(temp: float, hum: float) -> Columns:
+def generate_standard_cli_layout(temp: float, hum: float, time: datetime) -> Columns:
     temp_panel = Panel(
         f"{temp}°C",
         title="🌡️",
@@ -13,6 +13,5 @@ def generate_standard_cli_layout(temp: float, hum: float) -> Columns:
         f"{hum}%",
         title="💦",
     )
-    now = datetime.now()
-    time_panel = Panel(f"{datetime.strftime(now, '%H:%M:%S %d-%m-%Y')}", title="🕒")
+    time_panel = Panel(f"{datetime.strftime(time, '%H:%M:%S %d-%m-%Y')}", title="🕒")
     return Columns([temp_panel, hum_panel, time_panel])

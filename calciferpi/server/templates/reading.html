@@ -1,0 +1,6 @@
+<div hx-get="/readings/local" hx-trigger="every 60s" hx-swap="outerHTML" class="col-lg-8 px-0">
+    <h1>{{reading.name}}</h1>
+    <p class="fs-5">🌡️ {{reading.temperature}}c</p>
+    <p class="fs-5">💦 {{reading.humidity}}%</p>
+    <p class="fs-5">🕒 {{reading.time.strftime("%H:%M:%S %d-%m-%Y")}}</p>
+</div>
