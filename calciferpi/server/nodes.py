@@ -1,5 +1,4 @@
 # Handles querying other nodes for their readings
-import datetime
 import httpx
 
 from calciferpi import readings

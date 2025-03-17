@@ -3,8 +3,8 @@ import os
 from flask import Flask, render_template
 
 from calciferpi import readings
-from calciferpi.settings import settings
 from calciferpi.server import nodes
+from calciferpi.settings import settings
 
 # Determine the directory where the current script is located.
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
