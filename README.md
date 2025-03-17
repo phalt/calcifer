@@ -6,21 +6,44 @@ Calcifer uses a [Raspberry Pi Zero 2 W](https://thepihut.com/products/raspberry-
 
 ## Install
 
-CalciferPi is an installable:
+CalciferPi is a script that can be installed in the local virtual environment:
 
 ```sh
-pipx install calciferpi
+git clone git@github.com:phalt/calcifer.git
+make install-pi
 ```
 
-## Single instance
+### CLI commands
 
-CalciferPi can be ran as a single node, providing a simple GUI and HTTP API for querying the sensor:
+See info about CalciferPi's commands:
 
 ```sh
-calciferpi run node
+> calciferpi
+
+Usage: calciferpi [OPTIONS] COMMAND [ARGS]...
+
+  CalciferPi 🔥🍓:  The simplest Raspberry Pi temperature sensor
+
+  https://github.com/phalt/calcifer
+
+Options:
+  --help  Show this message and exit.
+
+Commands:
+  host  Run the micro web server in host mode
+  info  Print configuration information about calciferpi
+  live  Display a live updating display of the temperature and humidity...
+  read  Read the temperature and humidity from the DHT22 sensor Runs once...
 ```
 
-On your local network you can then visit `http://raspberrypi.local/calcifer` to see the GUI.
+## CLI reading
+
+CalciferPi can be ran as a single node, providing a simple CLI output for the reading
+
+```sh
+. .venv/bin/activate
+calciferpi read
+```
 
 ## Host
 
@@ -42,33 +65,39 @@ flowchart LR
 To run CalciferPi in host mode, change your run command to:
 
 ```sh
-calciferpi run host
+calciferpi host
 ```
 
-Then visit `http://raspberrypi.local/calcifer`.
+Then visit `http://raspberrypi.local/`.
 
 See configuration below for how to connect to other CalciferPi nodes.
 
 ## Configuration
 
-### Background service
+The configuration file provides some basic methods of configuration:
 
-You can use Supervisor to run Calcifer as a background service. [See this guide for hints on getting started](https://www.piawesome.com/how-tos/Supervisor%20as%20a%20Background%20Service%20Manager.html)
-
-### Connecting to nodes
-
-You can configure nodes to connect to using a file called `~/.config/calciferpi`
-
-```yaml
----
-nodes:
-  bedroom:
-    - url: http://bedroompi.local
-  living-room:
-    - url: http://livingroompi.local
+```conf
+; The GPIO pin you are using with your DHT22 sensor, defaults to 4.
+DATA_PIN = 4
+; Run the code in debug mode. Defaults to False.
+DEBUG = True
+; Run the server in debug mode. Defaults to False
+SERVER_DEBUG = True
+; A configurable port to run the server on. Defaults to 80
+SERVER_PORT = 5000
+; A configurable host to run the server on. Defaults to 0.0.0.0
+SERVER_HOST = "127.0.0.1"
+; What the local device is called. Sefaults to "local".
+DEVICE_NAME = "Test device"
+; If this list is populated, these nodes will be queried to get data. Defaults to []
+NODES = ["http://other-calciferpi.local"]
 ```
 
-CalciferPi will automatically query the nodes listed and display them.
+### Nodes
+
+Assuming you have filled out the `NODES` array in your configuration, each NODE will receive an HTTP GET request, and will return a local reading from their sensor.
+
+Note that the node itself has to be running in `calciferpi host` mode in order to email this.
 
 ## Installing DHT22 sensor
 
@@ -80,9 +109,8 @@ The pins should be connected the same as [the diagrams on this tutorial](https:/
 
 Configure which data out pin to use by editing the `DATA_PIN` constant in `~/.config/calciferpi`:
 
-```yaml
----
-DATA_PIN: 18
+```conf
+DATA_PIN = 4
 ```
 
 The default is `GPIO4`: [https://pinout.xyz/pinout/pin7_gpio4/](https://pinout.xyz/pinout/pin7_gpio4/)
