@@ -13,6 +13,9 @@ class DebugDHT22(BaseModel):
     temperature: float = -20.0
     humidity: float = -50.0
 
+    def exit(self):
+        pass
+
 
 def get_dht22_device() -> adafruit_dht.DHT22 | DebugDHT22:
     if calcifer_settings.DEBUG:
