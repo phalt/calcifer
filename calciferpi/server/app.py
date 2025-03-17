@@ -13,6 +13,16 @@ TEMPLATE_DIR = os.path.join(BASE_DIR, "templates/")
 app = Flask(__name__, static_folder=STATIC_DIR, template_folder=TEMPLATE_DIR)
 
 
+@app.route("/api/reading")
+def get_api_reading():
+    """
+    Returns a JSON response for the local devices' readings.
+    This is the "node" endpoint used by other CalciferPi hosts
+    """
+    reading = readings.get_readings()
+    return reading.model_dump()
+
+
 @app.route("/readings/local")
 def get_local_reading():
     """
