@@ -11,8 +11,9 @@ def split_ver():
 
 class Settings(BaseSettings):
     DATA_PIN: int = 4
-    SERVER_DEBUG: bool = True
-    SERVER_PORT: int = 5000
+    SERVER_DEBUG: bool = False
+    SERVER_PORT: int = 80
+    DEBUG: bool = False
 
     class Config:
         env_file = "~/.config/calciferpi"

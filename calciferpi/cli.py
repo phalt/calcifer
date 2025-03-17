@@ -11,15 +11,15 @@ def cli_group():
 
 
 @click.command()
-def version():
+def info():
     """
-    Print the current version of calficerpi
+    Print configuration information about calciferpi
     """
-    from calciferpi.settings import (
-        VERSION,
-    )
+    from calciferpi.settings import VERSION, settings
 
     print(f"calciferpi {VERSION}")
+    print(f"Debug: {settings.DEBUG}")
+    print(f"Server Debug: {settings.SERVER_DEBUG}")
 
 
 @click.command()
@@ -76,7 +76,7 @@ def host():
     app.run()
 
 
-cli_group.add_command(version)
+cli_group.add_command(info)
 cli_group.add_command(read)
 cli_group.add_command(host)
 cli_group.add_command(live)
