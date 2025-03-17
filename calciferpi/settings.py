@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     DATA_PIN: int = 4
     SERVER_DEBUG: bool = False
     SERVER_PORT: int = 80
+    SERVER_HOST: str = "0.0.0.0"
     DEBUG: bool = False
 
     class Config:

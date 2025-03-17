@@ -71,9 +71,9 @@ def host():
     """
     Run the micro web server in host mode
     """
-    from calciferpi.server.app import app
+    from calciferpi.server.app import run
 
-    app.run()
+    run()
 
 
 cli_group.add_command(info)

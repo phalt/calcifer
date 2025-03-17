@@ -41,4 +41,4 @@ def index():
 
 
 def run():
-    app.run(debug=settings.SERVER_DEBUG, port=settings.SERVER_PORT)
+    app.run(host=settings.SERVER_HOST, debug=settings.SERVER_DEBUG, port=settings.SERVER_PORT)
