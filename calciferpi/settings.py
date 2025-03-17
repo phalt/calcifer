@@ -10,6 +10,7 @@ def split_ver():
 
 
 class Settings(BaseSettings):
+    DEVICE_NAME: str = "local"
     DATA_PIN: int = 4
     SERVER_DEBUG: bool = False
     SERVER_PORT: int = 80
