@@ -63,7 +63,7 @@ def live():
     with Live(_live_reading(), refresh_per_second=1, console=console) as live:
         while True:
             time.sleep(60)
-            live.update(_live_reading())
+            live.update(_live_reading(), refresh=True)
 
 
 @click.command()
