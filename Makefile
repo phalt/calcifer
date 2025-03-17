@@ -14,6 +14,10 @@ install-pi:  ## Install from scratch on a Raspberry Pi device
 	source .venv/bin/activate
 	python3 -m pip install .
 
+pull-and-rebuild:  ## Rebuild the project after pulling the latest changes
+	git pull origin main
+	python3 -m pip install .
+
 deploy-docs:  ## Build and deploy the documentation
 	mkdocs build
 	mkdocs gh-deploy

@@ -60,7 +60,7 @@ def live():
 
     console = Console()
 
-    with Live(_live_reading(), refresh_per_second=1, console=console) as live:
+    with Live(_live_reading(), refresh_per_second=1, console=console, screen=True) as live:
         while True:
             time.sleep(60)
             live.update(_live_reading(), refresh=True)
