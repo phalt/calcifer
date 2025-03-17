@@ -15,8 +15,9 @@ def get_readings() -> [
     Returns temperature, humidity
     """
     device = dht.get_dht22_device()
+    results = [_get_temperature(device=device), _get_humidity(device=device), datetime.datetime.now()]
     device.exit()
-    return [_get_temperature(device=device), _get_humidity(device=device), datetime.datetime.now()]
+    return results
 
 
 def _get_temperature(device: adafruit_dht.DHT22 | None) -> float:
