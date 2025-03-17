@@ -27,17 +27,29 @@ def read():
     """
     Read the temperature and humidity from the DHT22 sensor
     """
+    from datetime import datetime
+
+    from rich.columns import Columns
     from rich.console import (
         Console,
     )
+    from rich.panel import Panel
 
     from calciferpi import readings
 
     console = Console()
-    temp = readings.get_temperature()
-    console.print(f"🌡️ Temperature: {temp}°C")
-    hum = readings.get_humidity()
-    console.print(f"💦 Humidity: {hum}%")
+    temp, hum = readings.get_readings()
+    temp_panel = Panel(
+        f"{temp}°C",
+        title="🌡️",
+    )
+    hum_panel = Panel(
+        f"{hum}%",
+        title="💦",
+    )
+    console.print(Columns([temp_panel, hum_panel]))
+    now = datetime.now()
+    console.print(Columns([Panel(f"{datetime.strftime(now, '%H:%M:%S %d-%m-%Y')}", title="🕒")]))
 
 
 @click.command()

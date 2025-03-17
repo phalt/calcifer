@@ -1,6 +1,7 @@
 import adafruit_dht
 import board as raspberry_pi_gpio
 from adafruit_blinka.microcontroller.generic_micropython import Pin
+from pydantic import BaseModel
 
 from calciferpi.settings import settings as calcifer_settings
 
