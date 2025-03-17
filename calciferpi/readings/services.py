@@ -15,6 +15,7 @@ def get_readings() -> [
     Returns temperature, humidity
     """
     device = dht.get_dht22_device()
+    device.exit()
     return [_get_temperature(device=device), _get_humidity(device=device), datetime.datetime.now()]
 
 
