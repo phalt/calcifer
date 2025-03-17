@@ -4,6 +4,7 @@ from flask import Flask, render_template
 
 from calciferpi import readings
 from calciferpi.settings import settings
+from calciferpi.server import nodes
 
 # Determine the directory where the current script is located.
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -20,7 +21,7 @@ def get_api_reading():
     This is the "node" endpoint used by other CalciferPi hosts
     """
     reading = readings.get_readings()
-    return reading.model_dump()
+    return reading.model_dump_json()
 
 
 @app.route("/readings/local")
@@ -35,8 +36,9 @@ def get_local_reading():
 
 @app.route("/")
 def index():
-    reading = readings.get_readings()
-    return render_template("index.html", context={"readings": [reading.model_dump()]})
+    local_reading = readings.get_readings()
+    all_readings = [local_reading] + nodes.get_node_readings()
+    return render_template("index.html", context={"readings": [r.model_dump() for r in all_readings]})
 
 
 def run():

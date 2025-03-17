@@ -16,6 +16,7 @@ class Settings(BaseSettings):
     SERVER_PORT: int = 80
     SERVER_HOST: str = "0.0.0.0"
     DEBUG: bool = False
+    NODES: list = []
 
     class Config:
         env_file = "~/.config/calciferpi"

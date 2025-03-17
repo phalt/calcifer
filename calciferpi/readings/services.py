@@ -8,19 +8,19 @@ from calciferpi import dht
 from calciferpi.settings import settings as calcifer_settings
 
 
-class Readings(BaseModel):
+class Reading(BaseModel):
     device_name: str
     temperature: float
     humidity: float
     time: datetime.datetime
 
 
-def get_readings() -> Readings:
+def get_readings() -> Reading:
     """
     Returns temperature, humidity
     """
     device = dht.get_dht22_device()
-    readings = Readings(
+    readings = Reading(
         device_name=calcifer_settings.DEVICE_NAME,
         temperature=_get_temperature(device=device),
         humidity=_get_humidity(device=device),
