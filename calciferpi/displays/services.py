@@ -4,7 +4,7 @@ from rich.columns import Columns
 from rich.panel import Panel
 
 
-def generate_standard_layout(temp: float, hum: float) -> Columns:
+def generate_standard_cli_layout(temp: float, hum: float) -> Columns:
     temp_panel = Panel(
         f"{temp}°C",
         title="🌡️",

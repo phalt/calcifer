@@ -32,11 +32,11 @@ def read():
         Console,
     )
 
-    from calciferpi import display, readings
+    from calciferpi import displays, readings
 
     console = Console()
     temp, hum = readings.get_readings()
-    layout = display.generate_standard_layout(temp=temp, hum=hum)
+    layout = displays.generate_standard_cli_layout(temp=temp, hum=hum)
     console.print(layout)
 
 
@@ -52,11 +52,11 @@ def live():
     )
     from rich.live import Live
 
-    from calciferpi import display, readings
+    from calciferpi import displays, readings
 
     def _live_reading():
         temp, hum = readings.get_readings()
-        return display.generate_standard_layout(temp=temp, hum=hum)
+        return displays.generate_standard_cli_layout(temp=temp, hum=hum)
 
     console = Console()
 
