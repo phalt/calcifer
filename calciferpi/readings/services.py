@@ -1,5 +1,5 @@
-# TODO: Gracefully handle importing this on non-Raspberry Pi devices
 import datetime
+import time
 
 import adafruit_dht
 from pydantic import BaseModel
@@ -33,10 +33,18 @@ def get_readings() -> Reading:
 def _get_temperature(device: adafruit_dht.DHT22 | None) -> float:
     if device is None:
         return -20.0
-    return device.temperature
+    try:
+        return device.temperature
+    except RuntimeError:
+        time.sleep(1)
+        return device.temperature
 
 
 def _get_humidity(device: adafruit_dht.DHT22 | None) -> float:
     if device is None:
         return -50.0
-    return device.humidity
+    try:
+        return device.humidity
+    except RuntimeError:
+        time.sleep(1)
+        return device.humidity
