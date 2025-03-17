@@ -3,7 +3,7 @@ import os
 from flask import Flask, render_template
 from pydantic import BaseModel
 
-from calciferpi.readings import get_humidity, get_temperature
+from calciferpi import readings
 from calciferpi.settings import settings
 
 # Determine the directory where the current script is located.
@@ -22,8 +22,9 @@ class Reading(BaseModel):
 
 @app.route("/")
 def index():
-    readings = Reading(name="Paul's room", temperature=get_temperature(), humidity=get_humidity())
-    return render_template("index.html", context={"readings": [readings.model_dump()]})
+    temp, hum = readings.get_readings()
+    reading = Reading(name="Paul's room", temperature=temp, humidity=hum)
+    return render_template("index.html", context={"readings": [reading.model_dump()]})
 
 
 def run():
